@@ -34,7 +34,7 @@ export default async function getReservations(params: Reservation) {
       },
     });
 
-    return reservations.map((reservation) => ({
+    return reservations.map((reservation: any) => ({
       ...reservation,
       listing: {
         ...reservation.listing,
