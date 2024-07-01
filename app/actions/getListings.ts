@@ -9,6 +9,7 @@ export interface IListingParams {
   endDate?: string;
   locationValue?: string;
   category?: string;
+  amenity?: string;
 }
 
 export default async function getListings(params: IListingParams) {
@@ -22,6 +23,7 @@ export default async function getListings(params: IListingParams) {
       endDate,
       locationValue,
       category,
+      amenity,
     } = params;
 
     let query: any = {};
@@ -32,6 +34,9 @@ export default async function getListings(params: IListingParams) {
 
     if (category) {
       query.category = category;
+    }
+    if (amenity) {
+      query.amenity = amenity;
     }
 
     if (locationValue) {

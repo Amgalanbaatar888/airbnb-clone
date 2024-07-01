@@ -15,20 +15,24 @@ import Input from "../Inputs/Input";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import AmenityInput from "../Inputs/AmenityInput";
+import { amenities } from "../navbar/Amenities";
 
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
-  INFO = 2,
-  IMAGES = 3,
-  DESCRIPTION = 4,
-  PRICE = 5,
+  AMENITIES = 2,
+  INFO = 3,
+  IMAGES = 4,
+  DESCRIPTION = 5,
+  PRICE = 6,
 }
 
 const RentModal = () => {
   const rentModal = useRentModal();
   const [step, setStep] = useState(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const {
@@ -42,6 +46,7 @@ const RentModal = () => {
     defaultValues: {
       category: "",
       location: null,
+      amenity: [""],
       guestCount: 1,
       roomCount: 1,
       bathroomCount: 1,
@@ -54,6 +59,7 @@ const RentModal = () => {
 
   const category = watch("category");
   const location = watch("location");
+  const amenity = watch("amenity");
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
   const bathroomCount = watch("bathroomCount");
@@ -167,7 +173,38 @@ const RentModal = () => {
       </div>
     );
   }
-
+  if (step === STEPS.AMENITIES) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="What amenities do you offer?"
+          subtitle="You can always change this later"
+        />
+        <div
+          className="
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          lg:grid-cols-3
+          gap-3
+          max-h-[50vh]
+          overflow-y-auto
+        "
+        >
+          {amenities.map((item) => (
+            <div key={item.label} className="col-span-1">
+              <AmenityInput
+                onClick={(amenity) => setCustomValue("amenity", amenity)}
+                selected={amenity === item.label}
+                label={item.label}
+                icon={item.icon}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
   if (step === STEPS.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">

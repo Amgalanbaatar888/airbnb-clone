@@ -64,7 +64,9 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       ${selected ? "border-b-neutral-800" : "border-transparent"}
       `}
     >
-      <Icon size={26} />
+      <div>
+        <Icon size={26} />
+      </div>
       <div className="font-medium text-sm">{label}</div>
     </div>
   );
