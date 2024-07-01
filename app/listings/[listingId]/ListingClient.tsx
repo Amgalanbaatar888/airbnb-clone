@@ -100,7 +100,7 @@ const ListingClient: React.FC<IListingClientProps> = ({
   }, [listing.category]);
 
   const amenity = useMemo(() => {
-    return amenities.find((item) => item.label === listing.amenity);
+    return amenities.find((item) => item.label === listing.amenity[0]);
   }, [listing.amenity]);
 
   return (
