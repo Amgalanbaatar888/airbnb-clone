@@ -1,5 +1,6 @@
 import EmptyState from "../components/EmptyState";
 import ClientOnly from "../components/ClientOnly";
+
 import getCurrentUser from "../actions/getCurrentUser";
 import getReservations from "../actions/getReservations";
 import ReservationsClient from "./ReservationsClient";
@@ -7,7 +8,7 @@ import ReservationsClient from "./ReservationsClient";
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
   const reservations = await getReservations({
-    userId: currentUser?.id,
+    authorId: currentUser?.id,
   });
 
   if (!currentUser) {
@@ -31,8 +32,6 @@ const ReservationsPage = async () => {
       </ClientOnly>
     );
   }
-
-  console.log(reservations);
 
   return (
     <ClientOnly>

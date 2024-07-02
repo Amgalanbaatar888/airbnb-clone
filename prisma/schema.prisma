@@ -3,8 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
-
 }
 
 datasource db {
@@ -55,7 +53,6 @@ model Listing {
   imageSrc      String
   createdAt     DateTime @default(now())
   category      String
-  amenity       String[]
   roomCount     Int
   bathroomCount Int
   guestCount    Int

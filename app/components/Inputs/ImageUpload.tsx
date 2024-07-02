@@ -25,7 +25,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
   return (
     <CldUploadWidget
       onUpload={handleUpload}
-      uploadPreset="nd2kiaqx"
+      uploadPreset="Airbnb-clone"
       options={{
         maxFiles: 1,
         styles: {

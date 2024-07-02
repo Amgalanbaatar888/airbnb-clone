@@ -1,8 +1,9 @@
 "use client";
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
 import useFavorite from "@/app/hooks/useFavorite";
-import { User } from "@/prisma/generated/client";
+import { User } from "@prisma/client";
 
 interface HeartButtonProps {
   listingId: string;

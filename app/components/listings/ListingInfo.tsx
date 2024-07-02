@@ -6,7 +6,6 @@ import { IconType } from "react-icons";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
-import ListingAmenity from "./ListingAmenity";
 
 const Map = dynamic(() => import("../Map"), {
   ssr: false,
@@ -26,13 +25,6 @@ interface IListingInfoProps {
         description: string;
       }
     | undefined;
-  amenity:
-    | {
-        label: string;
-        icon: IconType;
-        description: string;
-      }
-    | undefined;
 }
 
 const ListingInfo: React.FC<IListingInfoProps> = ({
@@ -43,7 +35,6 @@ const ListingInfo: React.FC<IListingInfoProps> = ({
   bathroomCount,
   locationValue,
   category,
-  amenity,
 }) => {
   const { getByValue } = useCountries();
 
@@ -89,12 +80,6 @@ const ListingInfo: React.FC<IListingInfoProps> = ({
         />
       )}
       <hr />
-      <div className="text-xl font-semibold ">
-        <h1 className="mb-6">What this place offers</h1>
-        {amenity && (
-          <ListingAmenity icon={amenity.icon} label={amenity.label} />
-        )}
-      </div>
       <div className="text-lg font-light text-neutral-500">{description}</div>
       <hr />
       <Map center={coordinates} />

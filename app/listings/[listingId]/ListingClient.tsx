@@ -4,11 +4,9 @@ import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
-import { amenities } from "@/app/components/navbar/Amenities";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeReservation } from "@/app/types";
-import { Listing, User } from "@prisma/client";
+import { Listing, Reservation, User } from "@prisma/client";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -23,7 +21,7 @@ const initialDateRange = {
 };
 
 interface IListingClientProps {
-  reservations?: SafeReservation[];
+  reservations?: Reservation[];
   listing: Listing & {
     user: User;
   };
@@ -100,10 +98,6 @@ const ListingClient: React.FC<IListingClientProps> = ({
     return categories.find((item) => item.label === listing.category);
   }, [listing.category]);
 
-  const amenity = useMemo(() => {
-    return amenities.find((item) => item.label === listing.amenity[0]);
-  }, [listing.amenity]);
-
   return (
     <Container>
       <div className="max-w-screen-lg mx-auto">
@@ -133,7 +127,6 @@ const ListingClient: React.FC<IListingClientProps> = ({
               guestCount={listing.guestCount}
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
-              amenity={amenity}
             />
             <div
               className=" 

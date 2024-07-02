@@ -3,15 +3,14 @@
 import { useRouter } from "next/navigation";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
-import { User } from "@prisma/client";
+import { Listing, Reservation, User } from "@prisma/client";
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import ListingCard from "../components/listings/ListingCard";
-import { SafeListing, SafeReservation } from "../types";
 
 interface ReservationsClientProps {
-  reservations: (SafeReservation & { listing: SafeListing })[];
+  reservations: (Reservation & { listing: Listing })[];
   currentUser: User | null;
 }
 
