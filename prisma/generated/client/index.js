@@ -204,7 +204,8 @@ const config = {
     "db"
   ],
   "activeProvider": "mongodb",
-  "postinstall": false
+  "postinstall": false,
+  "ciName": "Vercel"
 }
 config.dirname = dirname
 config.document = dmmf
