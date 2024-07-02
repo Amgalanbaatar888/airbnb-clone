@@ -21,13 +21,13 @@ const ListingPage = async ({ params }: { params: IParams }) => {
       </ClientOnly>
     );
   }
-
+  console.log(listing);
   return (
     <ClientOnly>
       <ListingClient
         listing={listing}
-        currentUser={currentUser}
         reservations={reservations}
+        currentUser={currentUser}
       />
     </ClientOnly>
   );
